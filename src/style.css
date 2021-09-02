@@ -1,4 +1,26 @@
-img {
-    width: 128px;
-    height: 128px;
+.gameboard {
+    background-image: url(./images/wood.jpg);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    background: white;
+    border-radius: .5em;
+    width: 280px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #695d39;
+    box-shadow: -0.25em 0.25em 0.5em -0.25em black;
+    line-height: 1em;
+    margin: 1rem;
+}
+
+.card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 40px #b8860b;
 }
