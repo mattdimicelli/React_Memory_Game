@@ -11,6 +11,7 @@ import { useState } from 'react';
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   function resetCurrentScoreAndTallyBestScore() {
     if (currentScore > bestScore) {
@@ -23,12 +24,26 @@ function App() {
     setCurrentScore(currentScore + 1);
   }
 
+  function showGameOver() {
+    setGameOver(true);
+  }
+
+  function hideGameOver() {
+    setGameOver(false);
+  }
+
   return (
     <div className="App">
-      <Header currentScore={currentScore} bestScore={bestScore} />
+      <Header
+      currentScore={currentScore}
+      bestScore={bestScore}
+      gameOver={gameOver}
+      />
       <Gameboard
       resetCurrentScoreAndTallyBestScore={resetCurrentScoreAndTallyBestScore}
       increaseCurrentScore={increaseCurrentScore}
+      showGameOver={showGameOver}
+      hideGameOver={hideGameOver}
       />
     </div>
   );

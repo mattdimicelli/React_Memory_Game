@@ -5,37 +5,39 @@ import Card from './Card';
 
 export default function Gameboard(props) {
 
-  const { resetCurrentScoreAndTallyBestScore, increaseCurrentScore } = props;
+  const { resetCurrentScoreAndTallyBestScore, increaseCurrentScore,
+        showGameOver, hideGameOver } = props;
   const [countryImages, setCountryImages] = useState([]);
   const [random20CountriesImages, setRandom20CountriesImages] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
 
-  function randomizeCountrySelection() {
+  function randomlySelect20CardsForNewRound() {
     setRandom20CountriesImages(_.sampleSize(countryImages, 20));
   }
 
+  function shuffleCards() {
+      setRandom20CountriesImages(_.shuffle(random20CountriesImages));
+  }
+
   function handleClick(e) {
-    randomizeCountrySelection();
-    cardList = random20CountriesImages.map(countryImg => {
-        return <Card key={countryImg.alt} img={countryImg} handleClick={handleClick} />
-        });
     const clickedCard = e.currentTarget.firstElementChild.alt;
     if (clickedCards.includes(clickedCard)) {
         resetCurrentScoreAndTallyBestScore();
         setClickedCards([]);
+        randomlySelect20CardsForNewRound();
+        showGameOver();
     } else {
-        increaseCurrentScore()
-        setClickedCards(clickedCards.push(clickedCard));
+        increaseCurrentScore();
+        const newClickedCards = [...clickedCards];
+        newClickedCards.push(clickedCard);
+        setClickedCards(newClickedCards);
+        shuffleCards();
+        hideGameOver();
     }
     
   }
 
-  useEffect(() => randomizeCountrySelection(), [countryImages]);
-  useEffect(() => console.log(clickedCards), [clickedCards]);
-//   useEffect(() => {
-//     if
-//   }, [clickedCards]);
-
+  useEffect(() => randomlySelect20CardsForNewRound(), [countryImages]);
 
   useEffect(()=> {
     cacheFlags();

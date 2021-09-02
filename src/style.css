@@ -25,6 +25,10 @@
     text-align: center;
 }
 
+h2 {
+    line-height: 1em;
+}
+
 .card:hover {
     cursor: pointer;
     box-shadow: 0 0 40px #b8860b;
@@ -36,4 +40,22 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+}
+
+.scoreboard-and-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-left: 1rem;
+}
+
+.scoreboard {
+    font-size: 1.5em;
+}
+
+.status {
+    color: red;
+    font-size: 1.5em;
+    font-weight: bold;
 }
