@@ -4,31 +4,43 @@ import Card from './Card';
 
 
 export default function Gameboard(props) {
-    const { setCurrentScore, setBestScore } = props;
 
-  const countryImages = [];
+  const { resetCurrentScoreAndTallyBestScore, increaseCurrentScore } = props;
+  const [countryImages, setCountryImages] = useState([]);
   const [random20CountriesImages, setRandom20CountriesImages] = useState([]);
+  const [clickedCards, setClickedCards] = useState([]);
 
   function randomizeCountrySelection() {
     setRandom20CountriesImages(_.sampleSize(countryImages, 20));
   }
 
   function handleClick(e) {
-    console.log(countryImages);
     randomizeCountrySelection();
+    cardList = random20CountriesImages.map(countryImg => {
+        return <Card key={countryImg.alt} img={countryImg} handleClick={handleClick} />
+        });
+    const clickedCard = e.currentTarget.firstElementChild.alt;
+    if (clickedCards.includes(clickedCard)) {
+        resetCurrentScoreAndTallyBestScore();
+        setClickedCards([]);
+    } else {
+        increaseCurrentScore()
+        setClickedCards(clickedCards.push(clickedCard));
+    }
+    
   }
 
-  useEffect(() => console.log(random20CountriesImages), [random20CountriesImages]);
+  useEffect(() => randomizeCountrySelection(), [countryImages]);
+  useEffect(() => console.log(clickedCards), [clickedCards]);
+//   useEffect(() => {
+//     if
+//   }, [clickedCards]);
 
 
   useEffect(()=> {
-    (async function() {
-      await cacheFlags();
-      randomizeCountrySelection();
-    })();
+    cacheFlags();
 
     async function cacheFlags() {
-    console.log('fire');
       const response = await fetch('https://flagcdn.com/en/codes.json');
       const codes = await response.json();
       const justCountriesNotStates = Object.entries(codes).filter(country => {
@@ -36,26 +48,27 @@ export default function Gameboard(props) {
         return countryCode.length === 2 || (countryCode.startsWith('gb') && 
         countryCode.length === 6) ? true : false;
       });
-      for (const country of justCountriesNotStates) {
+      const countryImageArr = justCountriesNotStates.map(country => {
         const [countryCode, countryName] = country;
         const url = `https://flagcdn.com/224x168/${countryCode}.png`;
         const img = new Image();
         img.src = url;
         img.alt = countryName;
-        countryImages.push(img);
-      }
+        return img;
+      });
+      setCountryImages(countryImageArr);
     }
+
   }, []);
 
-
-    
+  let cardList = random20CountriesImages.map(countryImg => {
+    return <Card key={countryImg.alt} img={countryImg} handleClick={handleClick} />
+    });
 
     return (
         <div className='gameboard'>
             {random20CountriesImages.length > 0 ?
-            (random20CountriesImages.map(countryImg => {
-            return <Card key={countryImg.alt} img={countryImg} handleClick={handleClick} />
-            }))
+            cardList
             : 'Loading'}
         </div>
     );    
