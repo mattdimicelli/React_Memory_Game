@@ -4,6 +4,7 @@ import Card from './Card';
 
 
 export default function Gameboard(props) {
+    const { setCurrentScore, setBestScore } = props;
 
   const countryImages = [];
   const [random20CountriesImages, setRandom20CountriesImages] = useState([]);
@@ -12,6 +13,14 @@ export default function Gameboard(props) {
     setRandom20CountriesImages(_.sampleSize(countryImages, 20));
   }
 
+  function handleClick(e) {
+    console.log(countryImages);
+    randomizeCountrySelection();
+  }
+
+  useEffect(() => console.log(random20CountriesImages), [random20CountriesImages]);
+
+
   useEffect(()=> {
     (async function() {
       await cacheFlags();
@@ -19,6 +28,7 @@ export default function Gameboard(props) {
     })();
 
     async function cacheFlags() {
+    console.log('fire');
       const response = await fetch('https://flagcdn.com/en/codes.json');
       const codes = await response.json();
       const justCountriesNotStates = Object.entries(codes).filter(country => {
@@ -38,11 +48,15 @@ export default function Gameboard(props) {
   }, []);
 
 
-    const cardsList = random20CountriesImages.map(countryImg => <Card key={countryImg.alt} img={countryImg} />);
+    
 
     return (
         <div className='gameboard'>
-            {random20CountriesImages.length > 0 ? cardsList : 'Loading'}
+            {random20CountriesImages.length > 0 ?
+            (random20CountriesImages.map(countryImg => {
+            return <Card key={countryImg.alt} img={countryImg} handleClick={handleClick} />
+            }))
+            : 'Loading'}
         </div>
     );    
 }

@@ -1,5 +1,9 @@
+.App {
+    background-image: url(images/wood.jpg);
+    padding-top: 10px;
+}
+
 .gameboard {
-    background-image: url(./images/wood.jpg);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -18,9 +22,17 @@
     box-shadow: -0.25em 0.25em 0.5em -0.25em black;
     line-height: 1em;
     margin: 1rem;
+    text-align: center;
 }
 
 .card:hover {
     cursor: pointer;
     box-shadow: 0 0 40px #b8860b;
+}
+
+.header {
+    background: #f2eecb;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
 }
