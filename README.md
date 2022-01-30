@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Readme
+# React Memory Card Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This game puts your memory to the test!  You are presented with cards, each with a random country's flag and the name of the country.  The cards get shuffled any time one of them is clicked.  If you click on any country-card more than once, your score is reset to zero.  The idea is to get the highest score possible!
 
-In the project directory, you can run:
+### Challenge
 
-### `yarn start`
+The goal of this assignment from the Odin Project curriculum was to use either hooks or lifecycle methods, as well as lots of state.  I chose to you stateful functional components with hooks.  The complete design requirements can be found [here](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/memory-card).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Screenshot
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="center">
+  <img src="./screenshot_for_readme.png" alt="screenshot of library app" width="70%" height="70%">
+</p>
 
-### `yarn test`
+### Links
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Live site](https://mattdimicelli.github.io/memory-game/)
+- [Repo](https://github.com/mattdimicelli/memory-game)
 
-### `yarn build`
+## My process
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Built with
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React via create-react-app
+- React functional components with hooks
+- JSX
+- flagcdn.com API
+- Responsive design via Flexbox
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### What I learned
 
-### `yarn eject`
+Since I learned to build class-based components and to work with lifecycle methods
+before learning hooks, this was my first project made utilizing hooks.  I learned
+that hooks allow you to avoid the use of `this` and enable you to organize the
+code of the components into *isolated* resuable units (which means that related
+logic is **not** spread out over different lifecycle methods, and similarly that 
+*unrelated* logic does *not* need to be grouped together in the same lifecycle
+method).  These are definitely advantages that the hooks have over the lifecycle
+methods!  Also, I learned the two important "rules" of hooks: to only call hooks
+at the top level of the function (not in loops, conditions, nor nested functions),
+and to only call hooks from within React functions.  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Specifically, I learned about useState, useEffect, useReducer, useCallback, 
+useMemo, and useRef.  I could have implemented useReducer in addition to useState,
+however, to keep this first app elementary, I stuck to using only the useEffect and useState hooks.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Overall, after doing this project, I now see React stateful functional components
+with hooks as more elegant than their class-based counterparts. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
