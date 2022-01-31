@@ -18,7 +18,7 @@ The goal of this assignment from the Odin Project curriculum was to use either h
 ### Links
 
 - [Live site](https://mattdimicelli.github.io/memory-game/)
-- [Repo](https://github.com/mattdimicelli/memory-game)
+- [Repo](https://github.com/mattdimicelli/React_Memory_Game)
 
 ## My process
 
